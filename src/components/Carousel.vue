@@ -35,7 +35,7 @@
   export default {
     async created () {
       const { data } = await axios.get("/data.csv");
-      this.words  = parse(data).data;
+      this.words  = parse(data).data.slice(1);
     },
     data () {
       return {
