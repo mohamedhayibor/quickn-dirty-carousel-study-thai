@@ -1,18 +1,18 @@
 <template>
   <v-app>
     <v-content>
-      <HelloWorld/>
+      <Carousel/>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import Carousel from './components/Carousel';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    Carousel,
   },
   data: () => ({
     //
