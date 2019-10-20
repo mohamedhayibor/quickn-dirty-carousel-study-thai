@@ -1,32 +1,35 @@
 <template>
-  <!-- No need for this: hide-delimiter-background -->
-  <v-carousel
-    height="100%"
-    hide-delimiters
-    show-arrows-on-hover
-    @change="input"
-  >
-    <v-carousel-item
-      v-for="(word, id) in words"
-      :key="id"
+  <div style="height: 100%">
+    <v-carousel
+            height="100%"
+            hide-delimiters
+            show-arrows-on-hover
+            @change="input"
     >
-      <v-sheet
-        :color="colors[id % 5]"
-        height="100%"
-        @click="flip = !flip"
+      <v-carousel-item
+              v-for="(word, id) in words"
+              :key="id"
       >
-        <v-row
-          class="fill-height"
-          align="center"
-          justify="center"
+        <v-sheet
+                :color="colors[id % 5]"
+                height="100%"
+                @click="flip = !flip"
         >
-          <div class="display-3" v-if="flip">{{ word[0] }}</div>
-          <div class="display-3" v-else>{{ word[1] }}</div>
-        </v-row>
-      </v-sheet>
-    </v-carousel-item>
-  </v-carousel>
-
+          <v-row
+                  class="fill-height"
+                  align="center"
+                  justify="center"
+          >
+            <div class="display-3" v-if="flip">{{ word[0] }}</div>
+            <div class="display-3" v-else>{{ word[1] }}</div>
+          </v-row>
+        </v-sheet>
+      </v-carousel-item>
+    </v-carousel>
+    <div class="controls">
+      <v-btn class="" @click="changeMode">f</v-btn>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -39,6 +42,7 @@
     },
     data () {
       return {
+        flipped: false,
         flip: false,
         colors: [
           'indigo',
@@ -52,8 +56,19 @@
     },
     methods: {
       input() {
-        this.flip = false;
+        this.flip = this.flipped;
+      },
+      changeMode() {
+        this.flipped = !this.flipped;
+        this.flip = !this.flip;
       }
     }
   }
 </script>
+<style>
+  .controls {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+</style>
