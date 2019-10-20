@@ -38,11 +38,11 @@
   export default {
     async created () {
       const { data } = await axios.get("/data.csv");
-      this.words  = parse(data).data.slice(1);
+      this.words  = parse(data).data.slice(1).filter(line => line[3] === "TRUE");
     },
     data () {
       return {
-        flipped: false,
+        mode: false,
         flip: false,
         colors: [
           'indigo',
@@ -56,10 +56,10 @@
     },
     methods: {
       input() {
-        this.flip = this.flipped;
+        this.flip = this.mode;
       },
       changeMode() {
-        this.flipped = !this.flipped;
+        this.mode = !this.mode;
         this.flip = !this.flip;
       }
     }
